@@ -4,7 +4,10 @@ Pawsitive AI is a full-stack AI-powered web application that helps pet owners ma
 
 The system is built using **LangChain**, **Retrieval-Augmented Generation (RAG)**, and **OpenAI GPT models**, with carefully designed system prompts and guardrails to ensure safety, accuracy, and responsible product recommendations.
 
----
+frontend website:https://pawsitiveai.netlify.app/
+backend website:https://pawsitive-ai-aipetexpertagent.onrender.com
+backend API Test doc interface(based on Swagger):https://pawsitive-ai-aipetexpertagent.onrender.com/docs
+
 
 ## ✨ Key Features
 
