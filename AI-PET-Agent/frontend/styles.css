@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.chat-bubble {
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.chat-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background-color: #9ca3af;
+    border-radius: 4px;
+}
+
+/* Quick action buttons */
+.quick-action-btn {
+    font-size: 0.75rem;
+    background-color: #e5e7eb;
+    color: #374151;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
+}
+
+.quick-action-btn:hover {
+    background-color: #d1d5db;
+}

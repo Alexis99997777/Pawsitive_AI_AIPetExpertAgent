@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>AI Pet Expert</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+<div class="w-full max-w-2xl h-full md:h-[90vh] flex flex-col bg-white rounded-lg shadow-xl border">
+
+    <!-- Header -->
+    <div class="bg-gray-800 text-white p-4">
+        <h1 class="text-xl font-bold">AI Pet Expert</h1>
+    </div>
+
+    <!-- Chat -->
+    <div id="chat-container" class="flex-1 p-6 overflow-y-auto chat-container">
+        <div class="flex justify-start mb-4">
+            <div class="chat-bubble bg-gray-200 text-gray-800 rounded-lg py-2 px-4">
+                Hello! Ask me anything about your pet 🐶🐱
+            </div>
+        </div>
+    </div>
+
+    <!-- Input -->
+    <div class="p-4 border-t flex">
+        <input
+            id="user-input"
+            type="text"
+            placeholder="Ask a question about your pet..."
+            class="flex-1 px-4 py-2 border rounded-full"
+        />
+        <button
+            id="send-btn"
+            class="ml-3 bg-yellow-500 text-white px-5 rounded-full"
+        >
+            Send
+        </button>
+    </div>
+</div>
+
+<!-- ✅ SCRIPT 一定要在这里 -->
+<script>
+const API_BASE = "http://127.0.0.1:8005";
+
+const chatContainer = document.getElementById("chat-container");
+const userInput = document.getElementById("user-input");
+const sendBtn = document.getElementById("send-btn");
+
+sendBtn.addEventListener("click", sendMessage);
+userInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") sendMessage();
+});
+
+function addMessage(text, sender) {
+    const wrapper = document.createElement("div");
+    wrapper.className = `flex mb-4 ${sender === "user" ? "justify-end" : "justify-start"}`;
+
+    const bubble = document.createElement("div");
+    bubble.className = `chat-bubble rounded-lg py-2 px-4 ${
+        sender === "user" ? "bg-yellow-500 text-white" : "bg-gray-200 text-gray-800"
+    }`;
+
+    bubble.innerHTML = text.replace(/\n/g, "<br>");
+    wrapper.appendChild(bubble);
+    chatContainer.appendChild(wrapper);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+async function sendMessage() {
+    const message = userInput.value.trim();
+    if (!message) return;
+
+    addMessage(message, "user");
+    userInput.value = "";
+
+    try {
+        const res = await fetch(`${API_BASE}/api/chat`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message })
+        });
+
+        const data = await res.json();
+        addMessage(data.reply, "ai");
+
+    } catch (e) {
+        addMessage("❌ Failed to reach backend API", "ai");
+        console.error(e);
+    }
+}
+</script>
+
+</body>
+</html>
