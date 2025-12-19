@@ -54,7 +54,7 @@ The system is built using **LangChain**, **Retrieval-Augmented Generation (RAG)*
 - Deployed on **Render**
 
 ### AI & Data
-- OpenAI GPT-4o / GPT-4o-mini
+- OpenAI GPT-4o
 - LangChain chains and prompt templates
 - Local knowledge base for RAG
 
