@@ -62,6 +62,6 @@ The system is built using **LangChain**, **Retrieval-Augmented Generation (RAG)*
 
 👩‍💻 Author
 
-Built by Alexis
-Graduate CS student with a focus on backend engineering, distributed systems, and AI-powered applications.
+<b>Built by Alexis</b>
+<p>Graduate CS student with a focus on backend engineering, distributed systems, and AI-powered applications.</p>
 
